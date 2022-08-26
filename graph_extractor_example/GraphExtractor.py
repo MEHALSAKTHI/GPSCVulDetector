@@ -45,7 +45,7 @@ def split_function(filepath):
                 flag += 1
             elif len(function_list) > 0 and ("function" or "constructor" in function_list[flag][0]):
                 function_list[flag].append(text)
-
+    print("function list",function_list)
     return function_list
 
 
@@ -751,6 +751,7 @@ if __name__ == "__main__":
     node_feature = sorted(node_feature, key=lambda x: (x[0]))
     edge_feature = sorted(edge_feature, key=lambda x: (x[2], x[3]))
     node_feature, edge_feature = generate_potential_fallback_node(node_feature, edge_feature)
+    
     print("node_feature", node_feature)
     print("edge_feature", edge_feature)
 
