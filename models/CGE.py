@@ -55,8 +55,8 @@ class CGEConv:
 
     def train(self):
         self.model.fit([self.graph_train, self.pattern_train], self.y_train, batch_size=self.batch_size,
-                       epochs=self.epochs,
-                       class_weight=self.class_weight)
+                       epochs=self.epochs)
+                       #class_weight=self.class_weight)
         # self.model.save_weights("model.pkl")
 
     """
