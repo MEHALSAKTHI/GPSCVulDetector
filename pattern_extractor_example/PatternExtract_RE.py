@@ -172,6 +172,7 @@ if __name__ == "__main__":
         pattern33 = np.array(np.pad(pattern3, (0, 246), 'constant'))
 
         pattern_final = np.array([pattern11, pattern22, pattern33])
+        print("pattern_final:",pattern_final)
         original_pattern = np.array([pattern1, pattern2, pattern3])
         outputPath = outputfeatureDir + name + ".txt"
         np.savetxt(outputPath, pattern_final, fmt="%.6f")
