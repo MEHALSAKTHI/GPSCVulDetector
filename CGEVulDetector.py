@@ -8,6 +8,7 @@ args = parameter_parser()
 
 
 def main():
+    print("CGEVulDetector")
     graph_train, graph_test, graph_experts_train, graph_experts_test = get_graph_feature()
     pattern_train, pattern_test, _, _ = get_pattern_feature()
 
@@ -22,7 +23,7 @@ def main():
     for i in range(len(graph_experts_train)):
         y_train.append(int(graph_experts_train[i]))
     y_train = np.array(y_train)
-
+    print("Y_Train:"+y_train)
     # The label of certain contract in testing set
     y_test = []
     for i in range(len(graph_experts_test)):
