@@ -37,8 +37,8 @@ def main():
 #     elif args.model == 'CGEVariant':  # Conv layer and dense layer
 #         model = CGEVariant(graph_train, graph_test, pattern_train, pattern_test, y_train, y_test)
 
-    model.train()  # training
-    model.test()  # testing
+#     model.train()  # training
+#     model.test()  # testing
 
 
 if __name__ == "__main__":
