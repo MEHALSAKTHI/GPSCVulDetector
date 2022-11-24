@@ -40,8 +40,7 @@ class CGEConv:
         Dense1 = tf.keras.layers.Dense(100, activation='relu')(mergevec)
         Dense2 = tf.keras.layers.Dense(50, activation='relu')(Dense1)
         Dense3 = tf.keras.layers.Dense(10, activation='relu')(Dense2)
-        Dense4 = tf.keras.layers.Dense(10, activation='relu')(Dense3)
-        prediction = tf.keras.layers.Dense(1, activation='sigmoid', name='output')(Dense4)
+        prediction = tf.keras.layers.Dense(1, activation='sigmoid', name='output')(Dense3)
 
         model = tf.keras.Model(inputs=[input1, input2], outputs=[prediction])
 
