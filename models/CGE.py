@@ -46,7 +46,7 @@ class CGEConv:
 
         model.summary()
         adama = tf.keras.optimizers.Adam(lr)
-        model.compile(optimizer=adama, loss='binary_crossentropy', metrics=['accuracy'])
+        model.compile(optimizer=RMSprop, loss='binary_crossentropy', metrics=['accuracy'])
         self.model = model
 
     """
