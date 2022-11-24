@@ -30,7 +30,7 @@ class CGEConv:
         print(self.class_weight)
         graph_train = tf.keras.layers.Conv1D(200, kernel_size=3, strides=1, activation=tf.nn.relu, padding='same')(
             input1)
-        graph_train = tf.keras.layers.MaxPooling1D(pool_size=1, strides=1)(graph_train)
+        graph_train = tf.keras.layers.AveragePooling1D(pool_size=1, strides=1)(graph_train)
 
         pattern_train = tf.keras.layers.Conv1D(200, kernel_size=3, strides=1, activation=tf.nn.relu, padding='same')(
             input2)
