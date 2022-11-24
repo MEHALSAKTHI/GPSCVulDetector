@@ -2,6 +2,7 @@ import numpy as np
 from parser import parameter_parser
 from models.CGE import CGEConv
 from models.CGE_Variants import CGEVariant
+from models.FFNN import FFNN
 from preprocessing import get_graph_feature, get_pattern_feature
 
 args = parameter_parser()
