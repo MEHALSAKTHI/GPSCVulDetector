@@ -17,7 +17,9 @@ class CGEConv:
                  batch_size=args.batch_size, lr=args.lr, epochs=args.epochs):
         input1 = tf.keras.Input(shape=(1, 250), name='input1')
         input2 = tf.keras.Input(shape=(3, 250), name='input2')
-
+        
+        print("Added Avg Pooling")
+        
         self.graph_train = graph_train
         self.graph_test = graph_test
         self.pattern_train = pattern_train
