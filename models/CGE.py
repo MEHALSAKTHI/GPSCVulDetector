@@ -3,6 +3,7 @@ from parser import parameter_parser
 import tensorflow as tf
 from sklearn.utils import compute_class_weight
 from sklearn.metrics import confusion_matrix
+from keras.layers.normalization import BatchNormalization
 
 tf.compat.v1.set_random_seed(9906)
 args = parameter_parser()
@@ -30,10 +31,12 @@ class CGEConv:
         graph_train = tf.keras.layers.Conv1D(200, kernel_size=3, strides=1, activation=tf.nn.relu, padding='same')(
             input1)
         graph_train = tf.keras.layers.MaxPooling1D(pool_size=1, strides=1)(graph_train)
+        graph_train = tf.keras.layers.BatchNormalization()(graph_train)
 
         pattern_train = tf.keras.layers.Conv1D(200, kernel_size=3, strides=1, activation=tf.nn.relu, padding='same')(
             input2)
         pattern_train = tf.keras.layers.MaxPooling1D(pool_size=3, strides=3)(pattern_train)
+        pattern_train = tf.keras.layers.BatchNormalization()(pattern_train)
 
         mergevec = tf.keras.layers.Concatenate()([graph_train, pattern_train])
         Dense1 = tf.keras.layers.Dense(100, activation='relu')(mergevec)
