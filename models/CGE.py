@@ -3,6 +3,7 @@ from parser import parameter_parser
 import tensorflow as tf
 from sklearn.utils import compute_class_weight
 from sklearn.metrics import confusion_matrix
+import keras
 from keras.layers.normalization import BatchNormalization
 
 tf.compat.v1.set_random_seed(9906)
