@@ -47,7 +47,7 @@ class CGEConv:
         model = tf.keras.Model(inputs=[input1, input2], outputs=[prediction])
 
         model.summary()
-        adama = tf.keras.optimizers.Adam(lr)
+        adama = tf.keras.optimizers.Adam(0.0005)
         model.compile(optimizer=adama, loss='binary_crossentropy', metrics=['accuracy'])
         self.model = model
 
@@ -57,7 +57,7 @@ class CGEConv:
 
     def train(self):
         self.model.fit([self.graph_train, self.pattern_train], self.y_train, batch_size=self.batch_size,
-                       epochs=self.epochs)
+                       epochs=200)
                        #class_weight=self.class_weight)
         # self.model.save_weights("model.pkl")
 
