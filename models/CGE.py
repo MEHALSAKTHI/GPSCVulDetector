@@ -28,6 +28,7 @@ class CGEConv:
         self.epochs = epochs
         self.class_weight = compute_class_weight(class_weight='balanced', classes=[0, 1], y=y_train)
         print(self.class_weight)
+        print("SGD")
         graph_train = tf.keras.layers.Conv1D(200, kernel_size=3, strides=1, activation=tf.nn.relu, padding='same')(
             input1)
         graph_train = tf.keras.layers.MaxPooling1D(pool_size=1, strides=1)(graph_train)
@@ -58,7 +59,7 @@ class CGEConv:
 
     def train(self):
         self.model.fit([self.graph_train, self.pattern_train], self.y_train, batch_size=self.batch_size,
-                       epochs=200)
+                       epochs=100)
                        #class_weight=self.class_weight)
         # self.model.save_weights("model.pkl")
 
