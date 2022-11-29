@@ -50,7 +50,7 @@ class CGEConv:
         model.summary()
         adama = tf.keras.optimizers.Adam(0.0005)
         from tensorflow.keras.optimizers import Adam,Nadam, SGD
-        optimizer = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
+        optimizer = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=False)
         model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
         self.model = model
 
