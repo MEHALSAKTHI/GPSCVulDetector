@@ -48,7 +48,8 @@ class CGEConv:
 
         model.summary()
         adama = tf.keras.optimizers.Adam(0.0005)
-        model.compile(optimizer=adama, loss='binary_crossentropy', metrics=['accuracy'])
+        optimizer = SGD(lr=0.1, decay=1e-6, momentum=0.9, nesterov=True)
+        model.compile(optimizer=optimizer, loss='binary_crossentropy', metrics=['accuracy'])
         self.model = model
 
     """
