@@ -63,8 +63,7 @@ class CGEConv:
     """
 
     def train(self):
-        
-       n_folds = 10
+        n_folds = 10
         cv_scores, model_history = list(), list()
         for _ in range(n_folds):
             # split data
@@ -76,7 +75,7 @@ class CGEConv:
             cv_scores.append(val_acc)
             model_history.append(model)
     
-print('Estimated Accuracy %.3f (%.3f)' % (np.mean(cv_scores), np.std(cv_scores)))
+        print('Estimated Accuracy %.3f (%.3f)' % (np.mean(cv_scores), np.std(cv_scores)))
     
         self.model.fit([self.graph_train, self.pattern_train], self.y_train, batch_size=self.batch_size,
                        epochs=100)
