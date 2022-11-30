@@ -6,6 +6,7 @@ from sklearn.metrics import confusion_matrix
 from tensorflow.keras.layers import BatchNormalization
 
 from sklearn.model_selection  import train_test_split
+import numpy as np
 
 tf.compat.v1.set_random_seed(9906)
 args = parameter_parser()
