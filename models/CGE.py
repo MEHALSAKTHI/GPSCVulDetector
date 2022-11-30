@@ -59,6 +59,27 @@ class CGEConv:
     """
 
     def train(self):
+        
+        n_folds=10
+        epochs=100
+        batch_size=128
+
+        #save the model history in a list after fitting so that we can plot later
+        model_history = [] 
+
+        for i in range(n_folds):
+            print("Training on Fold: ",i+1)
+            
+            t_x1, val_x1, t_y, val_y = train_test_split(self.graph_train, self.y_train, test_size=0.1, 
+                                                       random_state = np.random.randint(1,1000, 1)[0])
+            
+            t_x2, val_x2, t_y, val_y = train_test_split(self.pattern_train, self.y_train, test_size=0.1, 
+                                                       random_state = np.random.randint(1,1000, 1)[0])
+            
+            model_history.append(fit_and_evaluate( [t_x1,t_x2], [val_x1, valx2] , t_y, val_y, epochs, batch_size))
+            print("======="*12, end="\n\n\n")
+    
+    
         self.model.fit([self.graph_train, self.pattern_train], self.y_train, batch_size=self.batch_size,
                        epochs=100)
                        #class_weight=self.class_weight)
