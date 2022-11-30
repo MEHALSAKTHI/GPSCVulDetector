@@ -16,6 +16,7 @@ The merged features (graph feature and pattern feature) are fed into the CGE mod
 class CGEConv:
     def __init__(self, graph_train, graph_test, pattern_train, pattern_test, y_train, y_test,
                  batch_size=args.batch_size, lr=args.lr, epochs=args.epochs):
+        print("Added Validation")
         input1 = tf.keras.Input(shape=(1, 250), name='input1')
         input2 = tf.keras.Input(shape=(3, 250), name='input2')        
         self.graph_train = graph_train
