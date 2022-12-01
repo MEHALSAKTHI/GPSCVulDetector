@@ -66,9 +66,16 @@ class CGEConv:
 
         X_train1, X_val1, y_train, y_val = train_test_split(self.graph_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
         X_train2, X_val2, y_train, y_val = train_test_split(self.pattern_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
-    
+        
+        
+        
 #         print('Estimated Accuracy %.3f (%.3f)' % (np.mean(cv_scores), np.std(cv_scores)))
-        print("Train: ")
+        print("G Train size: ")
+        print(graph_train)
+        print(len(graph_train))
+        print("P Train size: ")
+        print(pattern_train)
+        print(len(pattern_train))
         print([self.graph_train, self.pattern_train])
         print("Val: ")
         print([X_val1,X_val2])
