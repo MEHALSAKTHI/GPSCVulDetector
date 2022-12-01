@@ -49,7 +49,7 @@ class CGEConv:
         Dense3 = tf.keras.layers.Dense(10, activation='relu')(Dense2)
         prediction = tf.keras.layers.Dense(1, activation='sigmoid', name='output')(Dense3)
 
-        model = tf.keras.Model(inputs=[input1.to_numpy(), input2.to_numpy()], outputs=[prediction])
+        model = tf.keras.Model(inputs=[input1, input2)], outputs=[prediction])
 
         model.summary()
         adama = tf.keras.optimizers.Adam(0.0005)
