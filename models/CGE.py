@@ -64,15 +64,15 @@ class CGEConv:
 
     def train(self):
 
-        X_train1, X_val1, y_train, y_val = train_test_split([self.graph_train,self.pattern_train], self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
-#         X_train2, X_val2, y_train, y_val = train_test_split(self.pattern_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
+        X_train1, X_val1, y_train, y_val = train_test_split(self.graph_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
+        X_train2, X_val2, y_train, y_val = train_test_split(self.pattern_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
     
 #         print('Estimated Accuracy %.3f (%.3f)' % (np.mean(cv_scores), np.std(cv_scores)))
         print("Train: ")
         print([self.graph_train, self.pattern_train])
         print("Val: ")
-        print(X_val1)
-        self.model.fit([self.graph_train, self.pattern_train], self.y_train, validation_data= X_val1, batch_size=self.batch_size,
+        print([X_val1,X_val2])
+        self.model.fit([self.graph_train, self.pattern_train], self.y_train, validation_data= [X_val1,X_val2], batch_size=self.batch_size,
                        epochs=100)
                        #class_weight=self.class_weight)
         # self.model.save_weights("model.pkl")
