@@ -72,7 +72,7 @@ class CGEConv:
         print([self.graph_train, self.pattern_train])
         print("Val: ")
         print([X_val1,X_val2])
-        self.model.fit([self.graph_train, self.pattern_train], self.y_train, validation_data= [X_val1,X_val2], batch_size=self.batch_size,
+        self.model.fit([self.graph_train, self.pattern_train], self.y_train, validation_data= [X_val1.to_numpy(),X_val2.to_numpy()], batch_size=self.batch_size,
                        epochs=100)
                        #class_weight=self.class_weight)
         # self.model.save_weights("model.pkl")
