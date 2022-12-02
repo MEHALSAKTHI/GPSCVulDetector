@@ -7,6 +7,7 @@ from tensorflow.keras.layers import BatchNormalization
 
 from sklearn.model_selection  import train_test_split
 import numpy as np
+from sklearn.metrics import classification_report
 
 tf.compat.v1.set_random_seed(9906)
 args = parameter_parser()
@@ -101,6 +102,9 @@ class CGEConv:
         predictions = (self.model.predict([self.graph_test, self.pattern_test], batch_size=self.batch_size).round())
         predictions = predictions.flatten()
 
+        print(classification_report(self.y_test, predictions))
+        
+        
         tn, fp, fn, tp = confusion_matrix(self.y_test, predictions).ravel()
         print("Accuracy: ", (tp + tn) / (tp + tn + fp + fn))
         print('False positive rate(FPR): ', fp / (fp + tn))
