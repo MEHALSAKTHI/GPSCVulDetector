@@ -21,6 +21,15 @@ class CGEConv:
     def __init__(self, graph_train, graph_test, pattern_train, pattern_test, y_train, y_test,
                  batch_size=args.batch_size, lr=args.lr, epochs=args.epochs):
         print("Added Validation")
+        print("graph train: ")
+        print(type(graph_train))
+        print(graph_train)
+        print("graph test: ")
+        print(graph_test)
+        print("pattern train: ")
+        print(pattern_train)
+        print("pattern test: ")
+        print(pattern_test)
         input1 = tf.keras.Input(shape=(1, 250), name='input1')
         input2 = tf.keras.Input(shape=(3, 250), name='input2')        
         self.graph_train = graph_train
