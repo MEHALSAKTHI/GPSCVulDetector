@@ -86,16 +86,22 @@ class CGEConv:
     Training model
     """
 
+    def unnest(l):
+        if isinstance(l, list) and len(l) == 1 and isinstance(l[0], list):
+            return unnest(l[0])
+        return l
+
     def train(self):
 
         X_train1, X_val1, y_train, y_val = train_test_split(self.graph_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
 #         X_train2, X_val2, y_train, y_val = train_test_split(self.pattern_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
         
         print("Log Reg")
-        print("self.graph_train")
-        print(self.graph_train)
-        print("self.y_train")
-        print(self.y_train)
+        print("x_train1")
+        x_train1=unnest(x_train1)
+        print(x_train1)
+        print("y_train")
+        print(y_train)
         
         logreg = LogisticRegression()
         logreg.fit(X_train1, y_train)
