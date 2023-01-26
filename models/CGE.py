@@ -14,6 +14,8 @@ from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
 import numpy as np
 
+from sklearn.linear_model import LogisticRegression 
+
 
 tf.compat.v1.set_random_seed(9906)
 args = parameter_parser()
@@ -99,26 +101,30 @@ class CGEConv:
         X_train1, X_val1, y_train, y_val = train_test_split(self.graph_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
         X_train2, X_val2, y_train, y_val = train_test_split(self.pattern_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
         
-        
+        logreg = LogisticRegression()
+        logreg.fit(X_train1, y_train)
+        score(logreg)
         
 #         print('Estimated Accuracy %.3f (%.3f)' % (np.mean(cv_scores), np.std(cv_scores)))
-        n = len(self.graph_train)
-        t_cnt = int(n*0.8)
-        X_val1 = self.graph_train[t_cnt:]
-        X_val2 = self.pattern_train[t_cnt:]
-        y_val = self.y_train[t_cnt:]
-        print("G Train size: ")
-        print(self.graph_train)
-        print(len(self.graph_train))
-        print("P Train size: ")
-        print(self.pattern_train)
-        print(len(self.pattern_train))
-        print([self.graph_train, self.pattern_train])
-        print("Val: ")
-        print([X_val1,X_val2])
-        self.model.fit([self.graph_train, self.pattern_train], self.y_train, validation_data= ([X_val1,X_val2],y_val), batch_size=self.batch_size,
-                       epochs=100)
-                       #class_weight=self.class_weight)
+       
+#         n = len(self.graph_train)
+#         t_cnt = int(n*0.8)
+#         X_val1 = self.graph_train[t_cnt:]
+#         X_val2 = self.pattern_train[t_cnt:]
+#         y_val = self.y_train[t_cnt:]
+#         print("G Train size: ")
+#         print(self.graph_train)
+#         print(len(self.graph_train))
+#         print("P Train size: ")
+#         print(self.pattern_train)
+#         print(len(self.pattern_train))
+#         print([self.graph_train, self.pattern_train])
+#         print("Val: ")
+#         print([X_val1,X_val2])
+#         self.model.fit([self.graph_train, self.pattern_train], self.y_train, validation_data= ([X_val1,X_val2],y_val), batch_size=self.batch_size,
+#                        epochs=100)
+                       
+            #class_weight=self.class_weight)
         # self.model.save_weights("model.pkl")
 
     """
