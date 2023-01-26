@@ -86,10 +86,14 @@ class CGEConv:
     Training model
     """
 
-    def unnest(l):
-        if isinstance(l, list) and len(l) == 1 and isinstance(l[0], list):
-            return unnest(l[0])
-        return l
+    @staticmethod
+    def unlevel(obj):
+        while isinstance(obj, list) and len(obj) == 1:
+            obj = obj[0]
+        if isinstance(obj, list):
+            return [unlevel(item) for item in obj]
+        else:
+            return obj
 
     def train(self):
 
@@ -98,7 +102,9 @@ class CGEConv:
         
         print("Log Reg")
         print("x_train1")
-        x_train1=unnest(x_train1)
+        x_train1=unlevel(x_train1)
+        
+        
         print(x_train1)
         print("y_train")
         print(y_train)
