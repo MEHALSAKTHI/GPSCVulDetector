@@ -101,16 +101,16 @@ class CGEConv:
 #         X_train2, X_val2, y_train, y_val = train_test_split(self.pattern_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
         
         print("Log Reg")
-        print("x_train1")
-        x_traing=self.unlevel(x_train1)
+        print("X_train1")
+        X_train1=self.unlevel(X_train1)
         
         
-        print(x_traing)
+        print(X_train1)
         print("y_train")
         print(y_train)
         
         logreg = LogisticRegression()
-        logreg.fit(x_traing, y_train)
+        logreg.fit(X_train1, y_train)
         score(logreg)
         
 #         print('Estimated Accuracy %.3f (%.3f)' % (np.mean(cv_scores), np.std(cv_scores)))
