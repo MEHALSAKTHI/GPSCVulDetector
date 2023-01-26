@@ -102,7 +102,7 @@ class CGEConv:
         
         print("Log Reg")
         print("x_train1")
-        x_train1=unlevel(x_train1)
+        x_train1=self.unlevel(x_train1)
         
         
         print(x_train1)
