@@ -102,15 +102,15 @@ class CGEConv:
         
         print("Log Reg")
         print("x_train1")
-        x_train1=self.unlevel(x_train1)
+        x_traing=self.unlevel(x_train1)
         
         
-        print(x_train1)
+        print(x_traing)
         print("y_train")
         print(y_train)
         
         logreg = LogisticRegression()
-        logreg.fit(X_train1, y_train)
+        logreg.fit(x_traing, y_train)
         score(logreg)
         
 #         print('Estimated Accuracy %.3f (%.3f)' % (np.mean(cv_scores), np.std(cv_scores)))
