@@ -9,6 +9,12 @@ from sklearn.model_selection  import train_test_split
 import numpy as np
 from sklearn.metrics import classification_report
 
+from tensorflow.keras.applications.resnet50 import ResNet50
+from tensorflow.keras.preprocessing import image
+from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
+import numpy as np
+
+
 tf.compat.v1.set_random_seed(9906)
 args = parameter_parser()
 
@@ -45,31 +51,44 @@ class CGEConv:
         self.batch_size = batch_size
         self.epochs = epochs
         self.class_weight = compute_class_weight(class_weight='balanced', classes=[0, 1], y=y_train)
-#         print(self.class_weight)
-        graph_train = tf.keras.layers.Conv1D(200, kernel_size=3, strides=1, activation=tf.nn.relu, padding='same')(
-            input1)
-        graph_train = tf.keras.layers.MaxPooling1D(pool_size=1, strides=1)(graph_train)
-        graph_train = tf.keras.layers.BatchNormalization()(graph_train)
+        
+        model = ResNet50(weights='imagenet')
+#         img_path = 'elephant.jpg'
+#         img = image.load_img(img_path, target_size=(224, 224))
+        x =x_train
+        x = preprocess_input(x)
+        preds = model.predict(x)
+        print(preds)
+        
+        
+#         # decode the results into a list of tuples (class, description, probability)
+#         # (one such list for each sample in the batch)
+#         print('Predicted:', decode_predictions(preds, top=3)[0])
+# #         print(self.class_weight)
+#         graph_train = tf.keras.layers.Conv1D(200, kernel_size=3, strides=1, activation=tf.nn.relu, padding='same')(
+#             input1)
+#         graph_train = tf.keras.layers.MaxPooling1D(pool_size=1, strides=1)(graph_train)
+#         graph_train = tf.keras.layers.BatchNormalization()(graph_train)
 
-        pattern_train = tf.keras.layers.Conv1D(200, kernel_size=3, strides=1, activation=tf.nn.relu, padding='same')(
-            input2)
-        pattern_train = tf.keras.layers.MaxPooling1D(pool_size=3, strides=3)(pattern_train)
-        pattern_train = tf.keras.layers.BatchNormalization()(pattern_train)
+#         pattern_train = tf.keras.layers.Conv1D(200, kernel_size=3, strides=1, activation=tf.nn.relu, padding='same')(
+#             input2)
+#         pattern_train = tf.keras.layers.MaxPooling1D(pool_size=3, strides=3)(pattern_train)
+#         pattern_train = tf.keras.layers.BatchNormalization()(pattern_train)
 
-        mergevec = tf.keras.layers.Concatenate()([graph_train, pattern_train])
-        Dense1 = tf.keras.layers.Dense(100, activation='relu')(mergevec)
-        Dense2 = tf.keras.layers.Dense(50, activation='relu')(Dense1)
-        Dense3 = tf.keras.layers.Dense(10, activation='relu')(Dense2)
-        prediction = tf.keras.layers.Dense(1, activation='sigmoid', name='output')(Dense3)
+#         mergevec = tf.keras.layers.Concatenate()([graph_train, pattern_train])
+#         Dense1 = tf.keras.layers.Dense(100, activation='relu')(mergevec)
+#         Dense2 = tf.keras.layers.Dense(50, activation='relu')(Dense1)
+#         Dense3 = tf.keras.layers.Dense(10, activation='relu')(Dense2)
+#         prediction = tf.keras.layers.Dense(1, activation='sigmoid', name='output')(Dense3)
 
-        model = tf.keras.Model(inputs=[input1, input2], outputs=[prediction])
+#         model = tf.keras.Model(inputs=[input1, input2], outputs=[prediction])
 
-        model.summary()
-        adama = tf.keras.optimizers.Adam(0.0005)
-#         from tensorflow.keras.optimizers import Adam,Nadam, SGD
-#         optimizer = SGD(lr=0.1, decay=1e-6, momentum=0, nesterov=False)
-        model.compile(optimizer=adama, loss='binary_crossentropy', metrics=['accuracy'])
-        self.model = model
+#         model.summary()
+#         adama = tf.keras.optimizers.Adam(0.0005)
+# #         from tensorflow.keras.optimizers import Adam,Nadam, SGD
+# #         optimizer = SGD(lr=0.1, decay=1e-6, momentum=0, nesterov=False)
+#         model.compile(optimizer=adama, loss='binary_crossentropy', metrics=['accuracy'])
+#         self.model = model
 
     """
     Training model
