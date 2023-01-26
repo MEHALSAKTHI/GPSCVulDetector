@@ -9,10 +9,6 @@ from sklearn.model_selection  import train_test_split
 import numpy as np
 from sklearn.metrics import classification_report
 
-from tensorflow.keras.applications.resnet50 import ResNet50
-from tensorflow.keras.preprocessing import image
-from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
-import numpy as np
 
 from sklearn.linear_model import LogisticRegression 
 
@@ -54,13 +50,7 @@ class CGEConv:
         self.epochs = epochs
         self.class_weight = compute_class_weight(class_weight='balanced', classes=[0, 1], y=y_train)
         
-        model = ResNet50(weights='imagenet')
-#         img_path = 'elephant.jpg'
-#         img = image.load_img(img_path, target_size=(224, 224))
-        x =pattern_train
-        x = preprocess_input(x)
-        preds = model.predict(x)
-        print(preds)
+
         
         
 #         # decode the results into a list of tuples (class, description, probability)
@@ -100,6 +90,8 @@ class CGEConv:
 
         X_train1, X_val1, y_train, y_val = train_test_split(self.graph_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
         X_train2, X_val2, y_train, y_val = train_test_split(self.pattern_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
+        
+        print("Log Reg")
         
         logreg = LogisticRegression()
         logreg.fit(X_train1, y_train)
