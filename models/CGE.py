@@ -26,22 +26,22 @@ The merged features (graph feature and pattern feature) are fed into the CGE mod
 class CGEConv:
     def __init__(self, graph_train, graph_test, pattern_train, pattern_test, y_train, y_test, 
                  batch_size=args.batch_size, lr=args.lr, epochs=args.epochs):
-        print("Added Validation")
-        print("graph train: ")
-        print(type(graph_train))
-        print(graph_train)
-        print("graph test: ")
-        print(graph_test)
-        print("pattern train: ")
-        print(pattern_train)
-        print("pattern test: ")
-        print(pattern_test)
-        np.savetxt("graph_train.csv", graph_train,delimiter = ",", fmt ='%s',comments='')
-        np.savetxt("graph_test.csv", graph_test,delimiter = ",", fmt ='%s',comments='')
-        np.savetxt("pattern_train.csv", pattern_train,delimiter = ",", fmt ='%s',comments='')
-        np.savetxt("pattern_test.csv", pattern_test,delimiter = ",", fmt ='%s',comments='')
-        input1 = tf.keras.Input(shape=(1, 250), name='input1')
-        input2 = tf.keras.Input(shape=(3, 250), name='input2')        
+#         print("Added Validation")
+#         print("graph train: ")
+#         print(type(graph_train))
+#         print(graph_train)
+#         print("graph test: ")
+#         print(graph_test)
+#         print("pattern train: ")
+#         print(pattern_train)
+#         print("pattern test: ")
+#         print(pattern_test)
+#         np.savetxt("graph_train.csv", graph_train,delimiter = ",", fmt ='%s',comments='')
+#         np.savetxt("graph_test.csv", graph_test,delimiter = ",", fmt ='%s',comments='')
+#         np.savetxt("pattern_train.csv", pattern_train,delimiter = ",", fmt ='%s',comments='')
+#         np.savetxt("pattern_test.csv", pattern_test,delimiter = ",", fmt ='%s',comments='')
+#         input1 = tf.keras.Input(shape=(1, 250), name='input1')
+#         input2 = tf.keras.Input(shape=(3, 250), name='input2')        
         self.graph_train = graph_train
         self.graph_test = graph_test
         self.pattern_train = pattern_train
@@ -55,7 +55,7 @@ class CGEConv:
         model = ResNet50(weights='imagenet')
 #         img_path = 'elephant.jpg'
 #         img = image.load_img(img_path, target_size=(224, 224))
-        x =x_train
+        x =pattern_train
         x = preprocess_input(x)
         preds = model.predict(x)
         print(preds)
