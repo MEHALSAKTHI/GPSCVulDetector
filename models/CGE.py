@@ -9,6 +9,7 @@ from sklearn.model_selection  import train_test_split
 import numpy as np
 from sklearn.metrics import classification_report
 
+import pickle
 
 from sklearn.linear_model import LogisticRegression 
 
@@ -102,20 +103,21 @@ class CGEConv:
         X_train1, X_val1, y_train, y_val = train_test_split(self.graph_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
 #         X_train2, X_val2, y_train, y_val = train_test_split(self.pattern_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
         
-        file1 = open("x_train1.txt","w")
+        file1 = open("x_train1.txt","wb")
         L1 = X_train1
-        file2 = open("X_val1.txt","w")
+        file2 = open("X_val1.txt","wb")
         L2 = X_val1
-        file3 = open("y_train.txt","w")
+        file3 = open("y_train.txt","wb")
         L3 = y_train
-        file4 = open("y_val.txt","w")
+        file4 = open("y_val.txt","wb")
         L4 = y_val
 
         # \n is placed to indicate EOL (End of Line)
-        file1.write(L1)
-        file2.write(L2)
-        file3.write(L3)
-        file4.write(L4)
+        
+        pickle.dump(L1, file1)
+        pickle.dump(L2, file2)
+        pickle.dump(L3, file3)
+        pickle.dump(L4, file4)
         
         file1.close()
         file2.close()
