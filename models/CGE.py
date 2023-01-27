@@ -88,6 +88,7 @@ class CGEConv:
 
     @staticmethod
     def unlevel(obj):
+        print("unlevel called")
         while isinstance(obj, list) and len(obj) == 1:
             obj = obj[0]
         if isinstance(obj, list):
