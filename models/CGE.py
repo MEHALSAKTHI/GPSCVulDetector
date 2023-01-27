@@ -101,20 +101,26 @@ class CGEConv:
 
         X_train1, X_val1, y_train, y_val = train_test_split(self.graph_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
 #         X_train2, X_val2, y_train, y_val = train_test_split(self.pattern_train, self.y_train, test_size=0.10, random_state = np.random.randint(1,1000, 1)[0])
-        test_cases = [
-    [[[3, 3]]],
-    [[[3, 4], [3, 3]]],
-    [[3], [4]],
-    [[[3]]],
-    [[[3], [3, 3]]]
-]
-
-    for x in test_cases:
-        print("When {} is unleveled, it becomes {}".format(x, unlevel(x)))
-        print("Log Reg")
-        print("X_train1")
-        X_train1=self.unlevel(X_train1)
         
+        file1 = open("x_train1.txt","w")
+        L1 = X_train1
+        file2 = open("X_val1.txt","w")
+        L2 = X_val1
+        file3 = open("y_train.txt","w")
+        L3 = y_train
+        file4 = open("y_val.txt","w")
+        L4 = y_val
+
+        # \n is placed to indicate EOL (End of Line)
+        file1.write(L1)
+        file2.write(L2)
+        file3.write(L3)
+        file4.write(L4)
+        
+        file1.close()
+        file2.close()
+        file3.close()
+        file4.close()
         
         print(X_train1)
         print("y_train")
